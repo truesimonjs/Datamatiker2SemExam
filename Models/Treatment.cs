@@ -5,13 +5,11 @@ using System.Collections.Generic;
 
 namespace Datamatiker2SemExam.Models;
 
-public partial class Ansat
+public partial class Treatment
 {
     public int Id { get; set; }
 
-    public string Navn { get; set; }
+    public double Price { get; set; }
 
-    public int Telefon { get; set; }
-
-    public virtual ICollection<Opgave> Opgaves { get; set; } = new List<Opgave>();
+    public double? Duration { get; set; }
 }

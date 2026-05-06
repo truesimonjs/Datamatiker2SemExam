@@ -13,126 +13,125 @@ public partial class MassageDBContext : DbContext
     {
     }
 
-    public virtual DbSet<Ansat> Ansats { get; set; }
+    public virtual DbSet<BookingHistory> BookingHistories { get; set; }
 
-    public virtual DbSet<Bil> Bils { get; set; }
+    public virtual DbSet<Competency> Competencies { get; set; }
 
-    public virtual DbSet<Kunde> Kundes { get; set; }
+    public virtual DbSet<Customer> Customers { get; set; }
 
-    public virtual DbSet<Leje> Lejes { get; set; }
-
-    public virtual DbSet<Medarbejder> Medarbejders { get; set; }
-
-    public virtual DbSet<Opgave> Opgaves { get; set; }
+    public virtual DbSet<Treatment> Treatments { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
 
+    public virtual DbSet<Vacation> Vacations { get; set; }
+
+    public virtual DbSet<Worker> Workers { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Ansat>(entity =>
+        modelBuilder.Entity<BookingHistory>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Ansat__3214EC07C32AD702");
+            entity.HasKey(e => e.Id).HasName("PK__BookingH__3213E83FC2B08EE4");
 
-            entity.ToTable("Ansat");
+            entity.ToTable("BookingHistory");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
-            entity.Property(e => e.Navn)
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
+            entity.Property(e => e.BookingId).HasColumnName("bookingId");
+            entity.Property(e => e.CustomerId).HasColumnName("customerId");
+            entity.Property(e => e.StartTime)
                 .IsRequired()
-                .HasMaxLength(50);
+                .IsRowVersion()
+                .IsConcurrencyToken();
+            entity.Property(e => e.WorkerId).HasColumnName("workerId");
         });
 
-        modelBuilder.Entity<Bil>(entity =>
+        modelBuilder.Entity<Competency>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Bil__3214EC075BEBF57C");
+            entity.HasKey(e => e.Id).HasName("PK__Competen__3213E83F6AEAF92D");
 
-            entity.ToTable("Bil");
+            entity.ToTable("Competency");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
-            entity.Property(e => e.Model)
-                .IsRequired()
-                .HasMaxLength(50);
-            entity.Property(e => e.Nummerplade)
-                .IsRequired()
-                .HasMaxLength(50);
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
+            entity.Property(e => e.TreatmentId).HasColumnName("treatmentId");
+            entity.Property(e => e.WorkerId).HasColumnName("workerId");
         });
 
-        modelBuilder.Entity<Kunde>(entity =>
+        modelBuilder.Entity<Customer>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Kunde__3214EC07A1F11729");
+            entity.HasKey(e => e.Id).HasName("PK__Customer__3213E83FE4B7F618");
 
-            entity.ToTable("Kunde");
+            entity.ToTable("Customer");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
-            entity.Property(e => e.Navn)
-                .IsRequired()
-                .HasMaxLength(50);
-            entity.Property(e => e.Vip).HasColumnName("VIP");
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
+            entity.Property(e => e.Email).HasMaxLength(255);
+            entity.Property(e => e.Name).HasMaxLength(255);
+            entity.Property(e => e.Phonenumber).HasMaxLength(255);
         });
 
-        modelBuilder.Entity<Leje>(entity =>
+        modelBuilder.Entity<Treatment>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Leje__3214EC07EEE428AC");
+            entity.HasKey(e => e.Id).HasName("PK__Treatmen__3214EC07EBA30951");
 
-            entity.ToTable("Leje");
+            entity.ToTable("Treatment");
 
             entity.Property(e => e.Id).ValueGeneratedNever();
-
-            entity.HasOne(d => d.Bil).WithMany(p => p.Lejes)
-                .HasForeignKey(d => d.BilId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_BilId");
-
-            entity.HasOne(d => d.Kunde).WithMany(p => p.Lejes)
-                .HasForeignKey(d => d.KundeId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_KundeId");
-        });
-
-        modelBuilder.Entity<Medarbejder>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__Medarbej__3214EC07E868D593");
-
-            entity.ToTable("Medarbejder");
-
-            entity.Property(e => e.Id).ValueGeneratedNever();
-            entity.Property(e => e.Navn)
-                .IsRequired()
-                .HasMaxLength(50);
-        });
-
-        modelBuilder.Entity<Opgave>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__tmp_ms_x__3214EC07547FD545");
-
-            entity.ToTable("Opgave");
-
-            entity.Property(e => e.Id).ValueGeneratedNever();
-            entity.Property(e => e.Beskrivelse)
-                .IsRequired()
-                .HasMaxLength(50);
-
-            entity.HasOne(d => d.Ansat).WithMany(p => p.Opgaves)
-                .HasForeignKey(d => d.AnsatId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Opgave__AnsatId__0B91BA14");
+            entity.Property(e => e.Price).HasColumnName("price");
         });
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__User__3214EC07180D4089");
+            entity.HasKey(e => e.Id).HasName("PK__User__3213E83F4435A76E");
 
             entity.ToTable("User");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
-            entity.Property(e => e.Navn)
-                .IsRequired()
-                .HasMaxLength(50);
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
             entity.Property(e => e.Password)
-                .IsRequired()
-                .HasMaxLength(200);
-            entity.Property(e => e.Rolle)
-                .IsRequired()
-                .HasMaxLength(50);
+                .HasMaxLength(255)
+                .HasColumnName("password");
+            entity.Property(e => e.Role)
+                .HasMaxLength(255)
+                .HasColumnName("role");
+            entity.Property(e => e.Username)
+                .HasMaxLength(255)
+                .HasColumnName("username");
+        });
+
+        modelBuilder.Entity<Vacation>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Vacation__3213E83FA5E05232");
+
+            entity.ToTable("Vacation");
+
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
+            entity.Property(e => e.End)
+                .HasColumnType("datetime")
+                .HasColumnName("end");
+            entity.Property(e => e.Start)
+                .HasColumnType("datetime")
+                .HasColumnName("start");
+            entity.Property(e => e.WorkerId).HasColumnName("workerId");
+        });
+
+        modelBuilder.Entity<Worker>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Worker__3213E83FDED711F0");
+
+            entity.ToTable("Worker");
+
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
+            entity.Property(e => e.Name).HasMaxLength(255);
         });
 
         OnModelCreatingPartial(modelBuilder);
