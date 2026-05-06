@@ -1,5 +1,4 @@
-﻿using Datamatiker2SemExam.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace Datamatiker2SemExam.Services

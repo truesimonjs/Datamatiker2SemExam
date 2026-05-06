@@ -1,4 +1,4 @@
-﻿namespace Datamatiker2SemExam.Models
+﻿namespace Datamatiker2SemExam
 {
     public interface IHasId
     {
