@@ -1,6 +1,4 @@
-﻿using Datamatiker2SemExam.Models;
-
-namespace Datamatiker2SemExam.Services
+﻿namespace Datamatiker2SemExam
 {
     public interface IRepository<T> where T : IHasId
     {
