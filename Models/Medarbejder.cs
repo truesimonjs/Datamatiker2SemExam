@@ -3,15 +3,11 @@
 using System;
 using System.Collections.Generic;
 
-namespace Datamatiker2SemExam.EFC_Models;
+namespace Datamatiker2SemExam.Models;
 
-public partial class User
+public partial class Medarbejder
 {
     public int Id { get; set; }
 
-    public string Username { get; set; }
-
-    public string Password { get; set; }
-
-    public string Role { get; set; }
+    public string Navn { get; set; }
 }

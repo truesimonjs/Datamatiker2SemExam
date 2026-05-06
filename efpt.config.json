@@ -8,7 +8,7 @@
    "MinimumProductVersion": "2.6.1465",
    "ModelNamespace": null,
    "OutputContextPath": null,
-   "OutputPath": "EFC_Models",
+   "OutputPath": "Models",
    "PluralRules": null,
    "PreserveCasingWithRegex": true,
    "ProjectRootNamespace": "Datamatiker2SemExam",
@@ -19,35 +19,31 @@
    "T4TemplatePath": null,
    "Tables": [
       {
-         "Name": "[dbo].[Booking]",
+         "Name": "[dbo].[Ansat]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[BookingHistory]",
+         "Name": "[dbo].[Bil]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[Competency]",
+         "Name": "[dbo].[Kunde]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[Customer]",
+         "Name": "[dbo].[Leje]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[Treatment]",
+         "Name": "[dbo].[Medarbejder]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Opgave]",
          "ObjectType": 0
       },
       {
          "Name": "[dbo].[User]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[Vacation]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[Worker]",
          "ObjectType": 0
       }
    ],
