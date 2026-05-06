@@ -5,15 +5,9 @@ using System.Collections.Generic;
 
 namespace Datamatiker2SemExam.Models;
 
-public partial class Opgave
+public partial class Worker
 {
     public int Id { get; set; }
 
-    public string Beskrivelse { get; set; }
-
-    public int AnsatId { get; set; }
-
-    public int BilId { get; set; }
-
-    public virtual Ansat Ansat { get; set; }
+    public string Name { get; set; }
 }

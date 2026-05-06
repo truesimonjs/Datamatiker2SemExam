@@ -19,31 +19,31 @@
    "T4TemplatePath": null,
    "Tables": [
       {
-         "Name": "[dbo].[Ansat]",
+         "Name": "[dbo].[BookingHistory]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[Bil]",
+         "Name": "[dbo].[Competency]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[Kunde]",
+         "Name": "[dbo].[Customer]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[Leje]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[Medarbejder]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[Opgave]",
+         "Name": "[dbo].[Treatment]",
          "ObjectType": 0
       },
       {
          "Name": "[dbo].[User]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Vacation]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Worker]",
          "ObjectType": 0
       }
    ],

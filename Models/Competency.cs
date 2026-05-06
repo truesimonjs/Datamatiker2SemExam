@@ -5,9 +5,11 @@ using System.Collections.Generic;
 
 namespace Datamatiker2SemExam.Models;
 
-public partial class Medarbejder
+public partial class Competency
 {
     public int Id { get; set; }
 
-    public string Navn { get; set; }
+    public int? TreatmentId { get; set; }
+
+    public int? WorkerId { get; set; }
 }
