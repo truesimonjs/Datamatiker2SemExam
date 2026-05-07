@@ -17,11 +17,16 @@
     </div>
     <div style="position: relative;" top: 10px; right: 20px; font-size: 13px; line-height: 1.2; text-align: right; opacity: 0.85;">
         <strong>Åbningstider</strong><br />
-        Man–Fre: 10:00–16:00<br />
-        Lør–Søn: Lukket
+     
     </div>
-    @foreach (OpeningHours item in Model.OpeningHours)
+    @foreach (OpeningHour item in Model.OpeningHours)
     {
-        <p>@item.Day (@item.StartTime - @item.EndTime)</p>
+        if (@item.Open == false)
+        {
+            <p>@item.Day: Lukket</p>
+        } else 
+        {
+        <p>@item.Day: (@item.StartTime - @item.EndTime)</p>
+        }
     }
 </div>

@@ -35,6 +35,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[OpeningHours]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[Treatment]",
          "ObjectType": 0
       },

@@ -91,8 +91,9 @@ CREATE TABLE [Competency] (
 CREATE TABLE [OpeningHours] (
 [Id] integer PRIMARY KEY,
 [Day] nvarchar(250),
-[StartTime] nvarchar(250),
-[EndTime] nvarchar(250)
+[StartTime] nvarchar(250) Null,
+[EndTime] nvarchar(250) NULL,
+[Open] bit
 
 
 )

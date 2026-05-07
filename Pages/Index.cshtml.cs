@@ -7,7 +7,7 @@ namespace Datamatiker2SemExam.Pages
     public class IndexModel : PageModel
     {
 
-        public List<OpeningHours> OpeningHours { get; set; }
+        public List<OpeningHour> OpeningHours { get; set; }
 
     
         public void OnGet()
