@@ -6,6 +6,7 @@ Drop table if exists [dbo].Treatment
 Drop table if exists [dbo].Vacation
 Drop table if exists [dbo].Worker
 Drop table if exists [dbo].[User]
+Drop table if exists [dbo].[OpeningHours]
 
 
 
@@ -83,5 +84,15 @@ CREATE TABLE [Competency] (
   [workerId] integer,
   foreign key ([treatmentId]) references [Treatment] (Id),
   foreign key (workerId) references [Worker] (Id),
+
+
+)
+
+CREATE TABLE [OpeningHours] (
+[Id] integer PRIMARY KEY,
+[Day] nvarchar(250),
+[Start time] nvarchar(250),
+[End time] nvarchar(250)
+
 
 )
