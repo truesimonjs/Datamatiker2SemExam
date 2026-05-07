@@ -1,4 +1,9 @@
 ﻿@page
 @model Datamatiker2SemExam.Pages.ViewBookingModel
-@{
+
+<h1>Bookings</h1>
+
+@foreach (var b in Model.Bookings)
+{
+    <p>@b.Id</p>
 }
