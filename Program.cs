@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 namespace Datamatiker2SemExam
 {
     public class Program
@@ -8,6 +10,9 @@ namespace Datamatiker2SemExam
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+
+            builder.Services.AddAuthentication(
+    CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
             var app = builder.Build();
 
@@ -23,6 +28,7 @@ namespace Datamatiker2SemExam
 
             app.UseRouting();
 
+            app.UseAuthentication(); // Aktivér cookie-baseret Authentication
             app.UseAuthorization();
 
             app.MapStaticAssets();
