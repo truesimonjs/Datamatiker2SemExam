@@ -1,3 +1,5 @@
+using Datamatiker2SemExam.Services;
+
 namespace Datamatiker2SemExam
 {
     public class Program
@@ -8,6 +10,7 @@ namespace Datamatiker2SemExam
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+            builder.Services.AddSingleton<IViewTreatment, TreatmentRepository>();
 
             var app = builder.Build();
 

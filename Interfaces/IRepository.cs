@@ -1,4 +1,7 @@
-﻿namespace Datamatiker2SemExam
+﻿using Datamatiker2SemExam.Models;
+using Datamatiker2SemExam.Services;
+
+namespace Datamatiker2SemExam
 {
     public interface IRepository<T> where T : IHasId
     {
@@ -12,5 +15,8 @@
         /// </summary>
       
         bool Delete (int id);
+    }
+    public interface IViewTreatment : IRepository<Treatment>
+    {
     }
 }
