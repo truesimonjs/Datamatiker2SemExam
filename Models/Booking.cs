@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Datamatiker2SemExam.Models;
 
-public partial class Booking
+public partial class Booking : IHasId
 {
     public int Id { get; set; }
 
