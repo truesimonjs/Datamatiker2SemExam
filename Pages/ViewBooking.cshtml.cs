@@ -1,6 +1,7 @@
 using Datamatiker2SemExam.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace Datamatiker2SemExam.Pages
 {
@@ -16,7 +17,12 @@ namespace Datamatiker2SemExam.Pages
         public List<Booking> Bookings { get; set; } = new List<Booking>();
         public void OnGet()
         {
-            Bookings = _context.Bookings.ToList();
+            Bookings = _context.Bookings
+            .Include(b=> b.Customer)
+            .Include(b => b.Treatment)
+            .Include(b => b.Worker)
+            .ToList();
+
         }
     }
 }
