@@ -2,7 +2,7 @@
 
 namespace Datamatiker2SemExam.Services
 {
-    public class BookingRepository : EFCRepositoryBase<Booking,MassageDBContext>
+    public class BookingRepository : EFCRepositoryBase<Booking,MassageDBContext>,IBookingRepository
     {
 
     }
