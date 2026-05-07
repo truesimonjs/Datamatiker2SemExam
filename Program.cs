@@ -1,4 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Datamatiker2SemExam.Models;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace Datamatiker2SemExam
 {
@@ -10,9 +13,10 @@ namespace Datamatiker2SemExam
 
             // Add services to the container.
             builder.Services.AddRazorPages();
-
             builder.Services.AddAuthentication(
     CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+            builder.Services.AddDbContext<MassageDBContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 
