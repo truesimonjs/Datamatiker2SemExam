@@ -1,4 +1,5 @@
 ﻿@page
+@using Datamatiker2SemExam.Models
 @model IndexModel
 @{
 
@@ -19,4 +20,8 @@
         Man–Fre: 09:00–17:00<br />
         Lør–Søn: Lukket
     </div>
+    @foreach (OpeningHours item in Model.OpeningHours)
+    {
+        <p>@item.Day (@item.StartTime - @item.EndTime)</p>
+    }
 </div>
