@@ -8,6 +8,9 @@ namespace Datamatiker2SemExam.Models;
 
 public partial class MassageDBContext : DbContext
 {
+    public MassageDBContext()
+    {
+    }
     public MassageDBContext(DbContextOptions<MassageDBContext> options)
         : base(options)
     {
@@ -26,6 +29,9 @@ public partial class MassageDBContext : DbContext
     public virtual DbSet<Opgave> Opgaves { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        => optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MassageDB;Integrated Security=True;Encrypt=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
