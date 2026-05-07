@@ -11,7 +11,6 @@ namespace Datamatiker2SemExam.Pages
 {
     public class LoginModel : PageModel
     {
-        public static User? CurrentUser { get; set; }
 
         [BindProperty]
         public string Navn { get; set; }
@@ -27,14 +26,42 @@ namespace Datamatiker2SemExam.Pages
 
         public async Task<IActionResult> OnPost()
         {
+            User? user = getUser();
+            Console.WriteLine(user?.Username);
 
- 
+            if (user == null)
+            {
+                ErrorMessage = "Kunne ikke logge ind";
+                return Page();
+            }
+
+            Console.WriteLine("logging in");
+
+            // Log ind
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                BuildClaimsPrincipal(user));
+
 
             return RedirectToPage("/Index");
         }
 
+        private ClaimsPrincipal BuildClaimsPrincipal(User user)
+        {
+            // Opbyg Claims-liste
+            List<Claim> claims = new List<Claim>();
+            claims.Add(new Claim(ClaimTypes.Name, user.Username));
+            claims.Add(new Claim(ClaimTypes.Role, user.Role));
 
-        public void OnGet()
+            // Opret ClaimsIdentity (claims plus Authentication-strategi)
+            ClaimsIdentity claimsIdentity = new ClaimsIdentity(
+                claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            // Opret endeligt ClaimsPrincipal-objekt
+            return new ClaimsPrincipal(claimsIdentity);
+        }
+
+        public User? getUser()
         {
             List<User> users = new List<User>();
 
@@ -42,9 +69,9 @@ namespace Datamatiker2SemExam.Pages
 
             users = context.Users.ToList();
 
-            User? user = users.FirstOrDefault(u => u.Navn == "lucas");
+            User? user = users.FirstOrDefault(u => u.Username == "lucas");
 
-            Console.WriteLine(user.Navn);
+            return user;
         }
     }
 }
