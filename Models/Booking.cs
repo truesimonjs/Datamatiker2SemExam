@@ -9,7 +9,7 @@ public partial class Booking
 {
     public int Id { get; set; }
 
-    public byte[] StartTime { get; set; }
+    public string StartTime { get; set; }
 
     public double? Duration { get; set; }
 
