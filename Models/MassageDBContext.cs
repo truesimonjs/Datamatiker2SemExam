@@ -8,6 +8,7 @@ namespace Datamatiker2SemExam.Models;
 
 public partial class MassageDBContext : DbContext
 {
+
     public MassageDBContext(DbContextOptions<MassageDBContext> options)
         : base(options)
     {
