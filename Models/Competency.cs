@@ -5,13 +5,15 @@ using System.Collections.Generic;
 
 namespace Datamatiker2SemExam.Models;
 
-public partial class Ansat
+public partial class Competency
 {
     public int Id { get; set; }
 
-    public string Navn { get; set; }
+    public int? TreatmentId { get; set; }
 
-    public int Telefon { get; set; }
+    public int? WorkerId { get; set; }
 
-    public virtual ICollection<Opgave> Opgaves { get; set; } = new List<Opgave>();
+    public virtual Treatment Treatment { get; set; }
+
+    public virtual Worker Worker { get; set; }
 }

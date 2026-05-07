@@ -11,134 +11,198 @@ public partial class MassageDBContext : DbContext
     public MassageDBContext()
     {
     }
+
     public MassageDBContext(DbContextOptions<MassageDBContext> options)
         : base(options)
     {
     }
 
-    public virtual DbSet<Ansat> Ansats { get; set; }
+    public virtual DbSet<Booking> Bookings { get; set; }
 
-    public virtual DbSet<Bil> Bils { get; set; }
+    public virtual DbSet<BookingHistory> BookingHistories { get; set; }
 
-    public virtual DbSet<Kunde> Kundes { get; set; }
+    public virtual DbSet<Competency> Competencies { get; set; }
 
-    public virtual DbSet<Leje> Lejes { get; set; }
+    public virtual DbSet<Customer> Customers { get; set; }
 
-    public virtual DbSet<Medarbejder> Medarbejders { get; set; }
-
-    public virtual DbSet<Opgave> Opgaves { get; set; }
+    public virtual DbSet<Treatment> Treatments { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
 
+    public virtual DbSet<Vacation> Vacations { get; set; }
+
+    public virtual DbSet<Worker> Workers { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MassageDB;Integrated Security=True;Encrypt=True");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB.;Initial Catalog=MassageDB;Integrated Security=True;Encrypt=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Ansat>(entity =>
+        modelBuilder.Entity<Booking>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Ansat__3214EC07C32AD702");
+            entity.HasKey(e => e.Id).HasName("PK__Booking__3213E83FE82D39FB");
 
-            entity.ToTable("Ansat");
+            entity.ToTable("Booking");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
-            entity.Property(e => e.Navn)
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
+            entity.Property(e => e.CustomerId).HasColumnName("customerId");
+            entity.Property(e => e.StartTime)
                 .IsRequired()
-                .HasMaxLength(50);
-        });
+                .IsRowVersion()
+                .IsConcurrencyToken();
+            entity.Property(e => e.TreatmentId).HasColumnName("treatmentId");
+            entity.Property(e => e.WorkerId).HasColumnName("workerId");
 
-        modelBuilder.Entity<Bil>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__Bil__3214EC075BEBF57C");
-
-            entity.ToTable("Bil");
-
-            entity.Property(e => e.Id).ValueGeneratedNever();
-            entity.Property(e => e.Model)
-                .IsRequired()
-                .HasMaxLength(50);
-            entity.Property(e => e.Nummerplade)
-                .IsRequired()
-                .HasMaxLength(50);
-        });
-
-        modelBuilder.Entity<Kunde>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__Kunde__3214EC07A1F11729");
-
-            entity.ToTable("Kunde");
-
-            entity.Property(e => e.Id).ValueGeneratedNever();
-            entity.Property(e => e.Navn)
-                .IsRequired()
-                .HasMaxLength(50);
-            entity.Property(e => e.Vip).HasColumnName("VIP");
-        });
-
-        modelBuilder.Entity<Leje>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__Leje__3214EC07EEE428AC");
-
-            entity.ToTable("Leje");
-
-            entity.Property(e => e.Id).ValueGeneratedNever();
-
-            entity.HasOne(d => d.Bil).WithMany(p => p.Lejes)
-                .HasForeignKey(d => d.BilId)
+            entity.HasOne(d => d.Customer).WithMany(p => p.Bookings)
+                .HasForeignKey(d => d.CustomerId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_BilId");
+                .HasConstraintName("FK__Booking__custome__1699586C");
 
-            entity.HasOne(d => d.Kunde).WithMany(p => p.Lejes)
-                .HasForeignKey(d => d.KundeId)
+            entity.HasOne(d => d.Treatment).WithMany(p => p.Bookings)
+                .HasForeignKey(d => d.TreatmentId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_KundeId");
+                .HasConstraintName("FK__Booking__treatme__15A53433");
+
+            entity.HasOne(d => d.Worker).WithMany(p => p.Bookings)
+                .HasForeignKey(d => d.WorkerId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Booking__workerI__178D7CA5");
         });
 
-        modelBuilder.Entity<Medarbejder>(entity =>
+        modelBuilder.Entity<BookingHistory>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Medarbej__3214EC07E868D593");
+            entity.HasKey(e => e.Id).HasName("PK__BookingH__3213E83FEA607ABD");
 
-            entity.ToTable("Medarbejder");
+            entity.ToTable("BookingHistory");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
-            entity.Property(e => e.Navn)
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
+            entity.Property(e => e.BookingId).HasColumnName("bookingId");
+            entity.Property(e => e.CustomerId).HasColumnName("customerId");
+            entity.Property(e => e.StartTime)
                 .IsRequired()
-                .HasMaxLength(50);
+                .IsRowVersion()
+                .IsConcurrencyToken();
+            entity.Property(e => e.WorkerId).HasColumnName("workerId");
+
+            entity.HasOne(d => d.Booking).WithMany(p => p.BookingHistories)
+                .HasForeignKey(d => d.BookingId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__BookingHi__booki__1C5231C2");
+
+            entity.HasOne(d => d.Customer).WithMany(p => p.BookingHistories)
+                .HasForeignKey(d => d.CustomerId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__BookingHi__custo__1A69E950");
+
+            entity.HasOne(d => d.Worker).WithMany(p => p.BookingHistories)
+                .HasForeignKey(d => d.WorkerId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__BookingHi__worke__1B5E0D89");
         });
 
-        modelBuilder.Entity<Opgave>(entity =>
+        modelBuilder.Entity<Competency>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tmp_ms_x__3214EC07547FD545");
+            entity.HasKey(e => e.Id).HasName("PK__Competen__3213E83F81EA95E2");
 
-            entity.ToTable("Opgave");
+            entity.ToTable("Competency");
+
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
+            entity.Property(e => e.TreatmentId).HasColumnName("treatmentId");
+            entity.Property(e => e.WorkerId).HasColumnName("workerId");
+
+            entity.HasOne(d => d.Treatment).WithMany(p => p.Competencies)
+                .HasForeignKey(d => d.TreatmentId)
+                .HasConstraintName("FK__Competenc__treat__220B0B18");
+
+            entity.HasOne(d => d.Worker).WithMany(p => p.Competencies)
+                .HasForeignKey(d => d.WorkerId)
+                .HasConstraintName("FK__Competenc__worke__22FF2F51");
+        });
+
+        modelBuilder.Entity<Customer>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Customer__3213E83FDF57CEA2");
+
+            entity.ToTable("Customer");
+
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
+            entity.Property(e => e.Email).HasMaxLength(255);
+            entity.Property(e => e.Name).HasMaxLength(255);
+            entity.Property(e => e.Phonenumber).HasMaxLength(255);
+        });
+
+        modelBuilder.Entity<Treatment>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Treatmen__3214EC07ED37B703");
+
+            entity.ToTable("Treatment");
 
             entity.Property(e => e.Id).ValueGeneratedNever();
-            entity.Property(e => e.Beskrivelse)
-                .IsRequired()
-                .HasMaxLength(50);
-
-            entity.HasOne(d => d.Ansat).WithMany(p => p.Opgaves)
-                .HasForeignKey(d => d.AnsatId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Opgave__AnsatId__0B91BA14");
+            entity.Property(e => e.Price).HasColumnName("price");
         });
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__User__3214EC07180D4089");
+            entity.HasKey(e => e.Id).HasName("PK__User__3213E83FBD494B85");
 
             entity.ToTable("User");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
-            entity.Property(e => e.Navn)
-                .IsRequired()
-                .HasMaxLength(50);
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
             entity.Property(e => e.Password)
-                .IsRequired()
-                .HasMaxLength(200);
-            entity.Property(e => e.Rolle)
-                .IsRequired()
-                .HasMaxLength(50);
+                .HasMaxLength(255)
+                .HasColumnName("password");
+            entity.Property(e => e.Role)
+                .HasMaxLength(255)
+                .HasColumnName("role");
+            entity.Property(e => e.Username)
+                .HasMaxLength(255)
+                .HasColumnName("username");
+        });
+
+        modelBuilder.Entity<Vacation>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Vacation__3213E83F30C552A7");
+
+            entity.ToTable("Vacation");
+
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
+            entity.Property(e => e.End)
+                .HasColumnType("datetime")
+                .HasColumnName("end");
+            entity.Property(e => e.Start)
+                .HasColumnType("datetime")
+                .HasColumnName("start");
+            entity.Property(e => e.WorkerId).HasColumnName("workerId");
+
+            entity.HasOne(d => d.Worker).WithMany(p => p.Vacations)
+                .HasForeignKey(d => d.WorkerId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Vacation__worker__1F2E9E6D");
+        });
+
+        modelBuilder.Entity<Worker>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Worker__3213E83F47429D24");
+
+            entity.ToTable("Worker");
+
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
+            entity.Property(e => e.Name).HasMaxLength(255);
         });
 
         OnModelCreatingPartial(modelBuilder);

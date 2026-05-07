@@ -2,7 +2,6 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Datamatiker2SemExam.Models;
 
@@ -10,11 +9,9 @@ public partial class User
 {
     public int Id { get; set; }
 
-    [Column("username")]
-    public string Navn { get; set; }
-
-    [Column("role")]
-    public string Rolle { get; set; }
+    public string Username { get; set; }
 
     public string Password { get; set; }
+
+    public string Role { get; set; }
 }
