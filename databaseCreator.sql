@@ -41,7 +41,7 @@ CREATE TABLE [Worker] (
 GO
 CREATE TABLE [Booking] (
   [id] integer PRIMARY KEY,
-  [StartTime] timestamp,
+  [StartTime] Char(255),
   [Duration] float,
   [treatmentId] int NOT NULL,
   [customerId] int NOT NULL,
