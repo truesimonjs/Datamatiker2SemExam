@@ -5,15 +5,15 @@ using System.Collections.Generic;
 
 namespace Datamatiker2SemExam.Models;
 
-public partial class Kunde
+public partial class Vacation
 {
     public int Id { get; set; }
 
-    public string Navn { get; set; }
+    public DateTime Start { get; set; }
 
-    public int Telefon { get; set; }
+    public DateTime End { get; set; }
 
-    public bool Vip { get; set; }
+    public int WorkerId { get; set; }
 
-    public virtual ICollection<Leje> Lejes { get; set; } = new List<Leje>();
+    public virtual Worker Worker { get; set; }
 }
