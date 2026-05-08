@@ -94,6 +94,15 @@ CREATE TABLE [OpeningHours] (
 [StartTime] nvarchar(250) Null,
 [EndTime] nvarchar(250) NULL,
 [Open] bit
-
-
 )
+
+
+INSERT INTO [Treatment] (id, Price, Duration)
+VALUES (1, 200, 30);
+
+INSERT INTO [Treatment] (id, Price, Duration)
+VALUES (2, 300, 45);
+
+INSERT INTO [Treatment] (id, Price, Duration)
+VALUES (3, 400, 60);
+
