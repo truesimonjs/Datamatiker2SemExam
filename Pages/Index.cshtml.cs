@@ -14,7 +14,7 @@ namespace Datamatiker2SemExam.Pages
         {
             using MassageDBContext context = new MassageDBContext();
             OpeningHours = context.OpeningHours.ToList();
-            Console.WriteLine(OpeningHours[0].Day); 
+            //Console.WriteLine(OpeningHours[0].Day); 
         }
     }
 }
