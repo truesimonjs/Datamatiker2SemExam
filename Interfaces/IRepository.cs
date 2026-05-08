@@ -16,7 +16,4 @@ namespace Datamatiker2SemExam
       
         bool Delete (int id);
     }
-    public interface IViewTreatment : IRepository<Treatment>
-    {
-    }
 }

@@ -1,21 +1,22 @@
 using Datamatiker2SemExam.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Datamatiker2SemExam.Interfaces;
 
 namespace Datamatiker2SemExam.Pages
 {
     public class ViewTreamentsModel : PageModel
     {
-        private IViewTreatment _viewTreatment;
-        public List<Treatment> Data { get; private set; }
+        private ITreatmentRepository _treatmentRepository;
+        public List<Treatment> Treatments { get; private set; }
 
-        public ViewTreamentsModel(IViewTreatment viewTreatment)
+        public ViewTreamentsModel(ITreatmentRepository treatmentRepository)
         {
-            _viewTreatment = viewTreatment;
+            _treatmentRepository = treatmentRepository;
         }
         public void OnGet()
         {
-            Data = _viewTreatment.GetAll();
+            Treatments = _treatmentRepository.GetAll();
         }
 
        
