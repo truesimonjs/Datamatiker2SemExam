@@ -8,7 +8,7 @@ namespace Datamatiker2SemExam.Pages
     public class ViewTreamentsModel : PageModel
     {
         private ITreatmentRepository _treatmentRepository;
-        public List<Treatment> Data { get; private set; }
+        public List<Treatment> Treatments { get; private set; }
 
         public ViewTreamentsModel(ITreatmentRepository treatmentRepository)
         {
@@ -16,7 +16,7 @@ namespace Datamatiker2SemExam.Pages
         }
         public void OnGet()
         {
-            Data = _treatmentRepository.GetAll();
+            Treatments = _treatmentRepository.GetAll();
         }
 
        
