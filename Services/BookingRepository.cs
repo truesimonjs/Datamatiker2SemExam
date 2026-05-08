@@ -3,7 +3,7 @@ using Datamatiker2SemExam.Interfaces;
 
 namespace Datamatiker2SemExam.Services
 {
-    public class BookingRepository : EFCRepositoryBase<Booking, MassageDBContext>, IbookingRepository
+    public class BookingRepository : EFCRepositoryBase<Booking, MassageDBContext>, IBookingRepository
     {
 
     }
