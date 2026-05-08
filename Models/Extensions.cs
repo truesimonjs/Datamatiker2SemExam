@@ -14,4 +14,9 @@
     {
 
     }
+
+    public partial class User : IHasId
+    {
+
+    }
 }

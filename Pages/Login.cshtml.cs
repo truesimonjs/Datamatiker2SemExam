@@ -1,4 +1,3 @@
-
 using Datamatiker2SemExam.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -7,13 +6,15 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 
+using Datamatiker2SemExam.Services;
+
 namespace Datamatiker2SemExam.Pages
 {
     public class LoginModel : PageModel
     {
 
         [BindProperty]
-        public string Navn { get; set; }
+        public string Username { get; set; }
 
         [BindProperty, DataType(DataType.Password)]
         public string Password { get; set; }
@@ -26,8 +27,7 @@ namespace Datamatiker2SemExam.Pages
 
         public async Task<IActionResult> OnPost()
         {
-            User? user = getUser();
-            Console.WriteLine(user?.Username);
+            User? user = getUser(Username, Password);
 
             if (user == null)
             {
@@ -35,7 +35,6 @@ namespace Datamatiker2SemExam.Pages
                 return Page();
             }
 
-            Console.WriteLine("logging in");
 
             // Log ind
             await HttpContext.SignInAsync(
@@ -61,7 +60,7 @@ namespace Datamatiker2SemExam.Pages
             return new ClaimsPrincipal(claimsIdentity);
         }
 
-        public User? getUser()
+        public User? getUser(string username, string password)
         {
             List<User> users = new List<User>();
 
@@ -69,7 +68,7 @@ namespace Datamatiker2SemExam.Pages
 
             users = context.Users.ToList();
 
-            User? user = users.FirstOrDefault(u => u.Username == "lucas");
+            User? user = users.FirstOrDefault(u => u.Username == username && u.Password == password);
 
             return user;
         }
