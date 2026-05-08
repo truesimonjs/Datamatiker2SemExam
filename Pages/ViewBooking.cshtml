@@ -3,28 +3,31 @@
 
 <h1>Bookings</h1>
 
-@foreach (var b in Model.Bookings)
-{
-    <div class="container">
-        <div class="row">
-            @foreach (var elem in Model.Bookings)
-            {
-                <div class="col-md-4 p-3">
-                    <div class="card shadow" style="width: 18rem;">
-                        <div class="card-body d-flex flex-column">
-                            <h1>Start Time @elem.StartTime</h1>
-                            
-                            
-                            <h3 class="card-title">@elem.StartTime</h3>
-                            <h4>@elem.Duration</h4>
-                            <h4>@elem.Customer.Name</h4>
-                            <h5>@elem.Treatment.Price</h5>
-                            <h5>@elem.Worker.Name</h5>
-                        </div>
+<div class="container">
+    <div class="row">
+
+        @foreach (var elem in Model.Bookings)
+        {
+            <div class="col-md-4 p-3">
+
+                <div class="card shadow" style="width: 18rem;">
+                    <div class="card-body d-flex flex-column">
+
+                        <h4>Start Time: @elem.StartTime</h4>
+
+                        <p>Varighed: @elem.Duration</p>
+
+                        <p>Kunde: @elem.Customer?.Name</p>
+
+                        <p>Pris: @elem.Treatment?.Price</p>
+
+                        <p>Medarbejder: @elem.Worker?.Name</p>
+
                     </div>
                 </div>
-            }
-        </div>
-    </div>
 
-}
+            </div>
+        }
+
+    </div>
+</div>
