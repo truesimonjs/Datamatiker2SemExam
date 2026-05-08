@@ -21,7 +21,7 @@
     </div>
     @foreach (OpeningHour item in Model.OpeningHours)
     {
-        if (@item.Open == false)
+        if (@item.ErOpen == false)
         {
             <p>@item.Day: Lukket</p>
         } else 

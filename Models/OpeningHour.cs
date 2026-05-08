@@ -15,5 +15,5 @@ public partial class OpeningHour
 
     public string EndTime { get; set; }
 
-    public bool? Open { get; set; }
+    public bool ErOpen { get; set; }
 }
