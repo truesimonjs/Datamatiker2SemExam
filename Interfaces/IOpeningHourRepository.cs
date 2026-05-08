@@ -1,6 +1,8 @@
-﻿namespace Datamatiker2SemExam.Interfaces
+﻿using Datamatiker2SemExam.Models;
+
+namespace Datamatiker2SemExam.Interfaces
 {
-    public interface IOpeningHourRepository
+    public interface IOpeningHourRepository : IRepository<OpeningHour>
     {
     }
 }
