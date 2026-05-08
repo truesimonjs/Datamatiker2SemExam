@@ -2,6 +2,7 @@ using Datamatiker2SemExam.Models;
 using Datamatiker2SemExam.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using Datamatiker2SemExam.Interfaces;
 
 namespace Datamatiker2SemExam
 {
@@ -13,7 +14,7 @@ namespace Datamatiker2SemExam
 
             // Add services to the container.
             builder.Services.AddRazorPages();
-            builder.Services.AddSingleton<IViewTreatment, TreatmentRepository>();
+            builder.Services.AddSingleton<ITreatmentRepository, TreatmentRepository>();
 
             builder.Services.AddDbContext<MassageDBContext>(options =>
          options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
