@@ -2,7 +2,7 @@
 
 namespace Datamatiker2SemExam.Interfaces
 {
-    public interface IbookingRepository : IRepository<Booking>
+    public interface IBookingRepository : IRepository<Booking>
     {
     }
 }
