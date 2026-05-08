@@ -84,17 +84,17 @@ CREATE TABLE [Competency] (
   [workerId] integer,
   foreign key ([treatmentId]) references [Treatment] (Id),
   foreign key (workerId) references [Worker] (Id),
-
-
 )
+GO
 
 CREATE TABLE [OpeningHours] (
 [Id] integer PRIMARY KEY,
 [Day] nvarchar(250),
 [StartTime] nvarchar(250) Null,
 [EndTime] nvarchar(250) NULL,
-[Open] bit
+[ErOpen] bit
 )
+GO
 
 
 INSERT INTO [Treatment] (id, Price, Duration)
@@ -160,7 +160,7 @@ VALUES
 
 
 -- OPENING HOURS
-INSERT INTO [OpeningHours] (Id, Day, StartTime, EndTime, Open)
+INSERT INTO [OpeningHours] (Id, Day, StartTime, EndTime, ErOpen)
 VALUES
 (1, 'Monday', '08:00', '17:00', 1),
 (2, 'Tuesday', '08:00', '17:00', 1),
@@ -181,21 +181,4 @@ VALUES
 (4, '2026-05-11 13:00', 90, 4, 4, 3),
 (5, '2026-05-11 14:30', 20, 5, 5, 2);
 
-
--- BOOKING HISTORY
-INSERT INTO [BookingHistory]
-(Id, StartTime, Duration, CustomerId, WorkerId, BookingId)
-VALUES
-(1, GETDATE(), 30, 1, 1, 1),
-(2, GETDATE(), 45, 2, 1, 2),
-(3, GETDATE(), 60, 3, 2, 3);
-
-
--- VACATIONS
-INSERT INTO [Vacation]
-(Id, [Start], [End], WorkerId)
-VALUES
-(1, '2026-07-01 00:00:00', '2026-07-07 23:59:59', 1),
-(2, '2026-08-15 00:00:00', '2026-08-20 23:59:59', 2),
-(3, '2026-12-24 00:00:00', '2026-12-31 23:59:59', 3);
 
