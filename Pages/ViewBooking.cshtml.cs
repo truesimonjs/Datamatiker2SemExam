@@ -1,4 +1,6 @@
+using Datamatiker2SemExam.Interfaces;
 using Datamatiker2SemExam.Models;
+using Datamatiker2SemExam.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -7,22 +9,18 @@ namespace Datamatiker2SemExam.Pages
 {
     public class ViewBookingModel : PageModel
     {
-        private readonly MassageDBContext _context;
+        private IBookingRepository _bookingRepository;
 
-        public ViewBookingModel(MassageDBContext context)
+        public List<Booking> Bookings { get; set; }
+
+        public ViewBookingModel(IBookingRepository bookingRepository)
         {
-            _context = context;
+            _bookingRepository = bookingRepository;
         }
-
-        public List<Booking> Bookings { get; set; } = new List<Booking>();
         public void OnGet()
         {
-            Bookings = _context.Bookings
-            .Include(b=> b.Customer)
-            .Include(b => b.Treatment)
-            .Include(b => b.Worker)
-            .ToList();
-
+            Bookings = _bookingRepository.GetAll();
         }
+
     }
 }
