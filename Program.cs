@@ -1,7 +1,7 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Datamatiker2SemExam.Models;
+using Datamatiker2SemExam.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
-
 
 namespace Datamatiker2SemExam
 {
@@ -13,10 +13,13 @@ namespace Datamatiker2SemExam
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+            builder.Services.AddSingleton<IViewTreatment, TreatmentRepository>();
+
+            builder.Services.AddDbContext<MassageDBContext>(options =>
+         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
             builder.Services.AddAuthentication(
     CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
-            builder.Services.AddDbContext<MassageDBContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 
@@ -32,7 +35,7 @@ namespace Datamatiker2SemExam
 
             app.UseRouting();
 
-            app.UseAuthentication(); // Aktivér cookie-baseret Authentication
+            app.UseAuthentication(); // Aktiv�r cookie-baseret Authentication
             app.UseAuthorization();
 
             app.MapStaticAssets();
