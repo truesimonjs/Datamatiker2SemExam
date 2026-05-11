@@ -1,4 +1,6 @@
+using Datamatiker2SemExam.Interfaces;
 using Datamatiker2SemExam.Models;
+using Datamatiker2SemExam.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
@@ -6,12 +8,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 
-using Datamatiker2SemExam.Services;
-
 namespace Datamatiker2SemExam.Pages
 {
     public class LoginModel : PageModel
     {
+
+        private IUserRepository _userRepository;
+
 
         [BindProperty]
         public string Username { get; set; }
@@ -21,13 +24,14 @@ namespace Datamatiker2SemExam.Pages
 
         public string ErrorMessage { get; set; }
 
-        public LoginModel()
+        public LoginModel(IUserRepository userRepository)
         {
+            _userRepository = userRepository;
         }
 
         public async Task<IActionResult> OnPost()
         {
-            User? user = getUser(Username, Password);
+            User? user = _userRepository.GetUserByUsernameAndPassword(Username, Password);
 
             if (user == null)
             {
@@ -58,19 +62,6 @@ namespace Datamatiker2SemExam.Pages
 
             // Opret endeligt ClaimsPrincipal-objekt
             return new ClaimsPrincipal(claimsIdentity);
-        }
-
-        public User? getUser(string username, string password)
-        {
-            List<User> users = new List<User>();
-
-            using MassageDBContext context = new MassageDBContext();
-
-            users = context.Users.ToList();
-
-            User? user = users.FirstOrDefault(u => u.Username == username && u.Password == password);
-
-            return user;
         }
     }
 }
