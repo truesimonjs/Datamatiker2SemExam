@@ -1,0 +1,26 @@
+@page "{id}"
+@model Datamatiker2SemExam.Pages.ThreatmentModel
+@{
+    ViewData["Title"] = "Threatment";
+}
+
+<div class="container mt-5">
+    @if (Model.Treatment != null)
+    {
+        <h1>Threatment</h1>
+        <div class="card shadow mt-4">
+            <div class="card-body">
+                <h3 class="card-title">Treatment ID: @Model.Treatment.Id</h3>
+                <h5>Price: DKK @(Model.Treatment.Price)</h5>
+                <h5>Duration: @(Model.Treatment.Duration) minutes</h5>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning" role="alert">
+            <h4 class="alert-heading">Behandling ikke fundet</h4>
+            <p>Denne behandling kunne ikke blive fundet.</p>
+        </div>
+    }
+</div>
