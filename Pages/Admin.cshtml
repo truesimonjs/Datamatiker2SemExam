@@ -1,0 +1,52 @@
+﻿@page
+@model Datamatiker2SemExam.Pages.AdminModel
+@{
+
+
+   ViewData["Title"] = "Relaxius Massage";
+}
+
+<h1>Administrer åbningstider</h1>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Dag</th>
+            <th>Åbner</th>
+            <th>Lukker</th>
+            <th>Åben?</th>
+            <th>Handling</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.OpeningHours)
+        {
+            <tr>
+                <td>@item.Day</td>
+                <td>@item.StartTime</td>
+                <td>@item.EndTime</td>
+                <td>@(item.ErOpen ? "Ja" : "Nej")</td>
+
+                <td>
+                    <form method="post" asp-page-handler="Delete" style="display:inline;">
+                        <input type="hidden" name="Id" value="@item.Id" />
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            Slet
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
