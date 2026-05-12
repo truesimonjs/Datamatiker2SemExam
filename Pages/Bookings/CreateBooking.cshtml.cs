@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Datamatiker2SemExam.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Datamatiker2SemExam.Interfaces;
 namespace Datamatiker2SemExam.Pages.Bookings
 {
     public class CreateBookingModel : PageModel

@@ -19,4 +19,10 @@
     {
 
     }
+    public partial class Customer : IHasId 
+    {
+    }
+    public partial class Worker : IHasId
+    {
+    }
 }
