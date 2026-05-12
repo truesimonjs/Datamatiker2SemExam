@@ -22,21 +22,26 @@ public class AdminModel : PageModel
             .ToList();
     }
 
-    public IActionResult OnPostDelete(int Id)
-    {
-        var item = _context.OpeningHours.FirstOrDefault(o => o.Id == Id);
-
-        if (item == null)
+        public IActionResult OnPostToggleOpen(int Id)
         {
-            TempData["Error"] = "Kunne ikke finde åbningstiden.";
+            var item = _context.OpeningHours.FirstOrDefault(o => o.Id == Id);
+
+            if (item == null)
+            {
+                TempData["Error"] = "Kunne ikke finde åbningstiden.";
+                return RedirectToPage();
+            }
+
+            // Skift mellem åben og lukket
+            item.ErOpen = !item.ErOpen;
+
+            _context.SaveChanges();
+
+            TempData["Success"] = item.ErOpen
+                ? $"{item.Day} er nu åbnet."
+                : $"{item.Day} er nu lukket.";
+
             return RedirectToPage();
         }
-
-        _context.OpeningHours.Remove(item);
-        _context.SaveChanges();
-
-        TempData["Success"] = "Åbningstid slettet!";
-        return RedirectToPage();
     }
-}
 }
