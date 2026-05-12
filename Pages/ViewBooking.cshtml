@@ -1,5 +1,9 @@
 ﻿@page
 @model Datamatiker2SemExam.Pages.ViewBookingModel
+@{
+    ViewData["Title"] = "Bookinger";
+}
+
 <h2>Bookings</h2>
 <p>Herunder kan du se dine bookinger</p>
 
@@ -17,19 +21,18 @@
 
                         <p>Varighed: @elem.Duration</p>
 
-                        <p>Kunde: @elem.Customer?.Name</p>
+                        <p>Kunde: @elem.Customer.Name</p>
 
-                        <p>Pris: @elem.Treatment?.Price</p>
+                        <p>Pris: @elem.Treatment.Price</p>
 
-                        <p>Medarbejder: @elem.Worker?.Name</p>
+                        <p>Medarbejder: @elem.Worker.Name</p>
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@elem.Id">
 
-                        <a class="btn btn-outline-info btn-sm mt-3"
-                               type="button"
-                               title="Slet"
-                               asp-page="Slet"
-                               asp-route-Id="@elem.Id">
-                                <i class="bi-trash"></i>
-                         </a>    
+                            <button class="btn btn-danger btn-sm mt-3" type="submit" title="Slet">
+                                <i class="bi bi-trash"></i>
+                            </button>
+
+                        </form>
 
                     </div>
                 </div>

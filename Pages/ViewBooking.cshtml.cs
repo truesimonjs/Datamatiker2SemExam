@@ -11,7 +11,7 @@ namespace Datamatiker2SemExam.Pages
     {
         private IBookingRepository _bookingRepository;
 
-        public List<Booking> Bookings { get; set; }
+        public List<Booking> Bookings { get; set; } = new List<Booking>();
 
         public ViewBookingModel(IBookingRepository bookingRepository)
         {
@@ -20,7 +20,24 @@ namespace Datamatiker2SemExam.Pages
         public void OnGet()
         {
             Bookings = _bookingRepository.GetAll();
+            Console.WriteLine(Bookings.ToString());
+        }
+
+        public IActionResult OnPostDelete(int id)
+        {
+            var booking = _bookingRepository.Read(id);
+
+            if (booking == null)
+
+            {
+                return NotFound();
+            }
+
+            _bookingRepository.Delete(id);
+
+            return RedirectToPage();
         }
 
     }
 }
+
