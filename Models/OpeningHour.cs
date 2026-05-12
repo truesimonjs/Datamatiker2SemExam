@@ -5,17 +5,15 @@ using System.Collections.Generic;
 
 namespace Datamatiker2SemExam.Models;
 
-public partial class Booking : IHasId
+public partial class OpeningHour
 {
     public int Id { get; set; }
 
+    public string Day { get; set; }
+
     public string StartTime { get; set; }
 
-    public double? Duration { get; set; }
+    public string EndTime { get; set; }
 
-    public int TreatmentId { get; set; }
-
-    public int CustomerId { get; set; }
-
-    public int WorkerId { get; set; }
+    public bool ErOpen { get; set; }
 }

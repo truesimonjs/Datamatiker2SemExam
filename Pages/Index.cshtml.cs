@@ -1,20 +1,23 @@
-using Microsoft.AspNetCore.Mvc;
+using Datamatiker2SemExam.Interfaces;
+using Datamatiker2SemExam.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Datamatiker2SemExam.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private IOpeningHourRepository _openingHour;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public List<OpeningHour> OpeningHours { get; set; }
+
+        public IndexModel(IOpeningHourRepository openingHourRepository)
         {
-            _logger = logger;
+            _openingHour = openingHourRepository;
         }
-
         public void OnGet()
         {
-
+            OpeningHours = _openingHour.GetAll();
+           
         }
     }
 }

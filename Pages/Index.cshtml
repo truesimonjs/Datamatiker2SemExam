@@ -1,10 +1,32 @@
 ﻿@page
+@using Datamatiker2SemExam.Models
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+
+    ViewData["Title"] = "Relaxius Massage";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center mt-5">
+    <div class="site-height">
+    <h1 class="display-4" style="font-weight: 600;">
+        Professionel massage med fokus på dig
+    </h1>
+    <p class="mt-3" style="font-size: 18px;">
+        Velkommen til Relaxius Massage – din velvære starter her.
+    </p>
+    </div>
+    <div style="position: relative;" top: 10px; right: 20px; font-size: 13px; line-height: 1.2; text-align: right; opacity: 0.85;">
+        <strong>Åbningstider</strong><br />
+     
+    </div>
+    @foreach (OpeningHour item in Model.OpeningHours)
+    {
+        if (@item.ErOpen == false)
+        {
+            <p>@item.Day: Lukket</p>
+        } else 
+        {
+        <p>@item.Day: (@item.StartTime - @item.EndTime)</p>
+        }
+    }
 </div>

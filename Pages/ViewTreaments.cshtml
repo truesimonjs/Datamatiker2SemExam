@@ -1,0 +1,23 @@
+﻿@page
+@model Datamatiker2SemExam.Pages.ViewTreamentsModel
+@{
+}
+
+<div class="container">
+    <div class="row">
+        @foreach (var elem in Model.Treatments)
+        {
+            <div class="col-md-4 p-3">
+                <a href="/Threatment/@elem.Id" style="text-decoration: none; color: inherit;">
+                    <div class="card shadow" style="width: 18rem;">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title">@elem.Id</h3>
+                            <h5>Price: DKK @(elem.Price)</h5>
+                            <h5>Min: @(elem.Duration)</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>

@@ -1,4 +1,5 @@
 ﻿using Datamatiker2SemExam.Models;
+using Datamatiker2SemExam.Services;
 
 namespace Datamatiker2SemExam
 {
@@ -14,9 +15,5 @@ namespace Datamatiker2SemExam
         /// </summary>
       
         bool Delete (int id);
-    }
-    public interface IBookingRepository : IRepository<Booking>
-    {
-
     }
 }
