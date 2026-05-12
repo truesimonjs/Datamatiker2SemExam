@@ -17,6 +17,7 @@ namespace Datamatiker2SemExam.Pages
         public void OnGet()
         {
             OpeningHours = _openingHour.GetAll();
+           
         }
     }
 }
