@@ -1,3 +1,5 @@
+using Datamatiker2SemExam.Services;
+
 namespace Datamatiker2SemExam
 {
     public class Program
@@ -8,7 +10,7 @@ namespace Datamatiker2SemExam
 
             // Add services to the container.
             builder.Services.AddRazorPages();
-
+            builder.Services.AddSingleton<IBookingRepository,BookingRepository>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

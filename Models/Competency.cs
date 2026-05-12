@@ -12,8 +12,4 @@ public partial class Competency
     public int? TreatmentId { get; set; }
 
     public int? WorkerId { get; set; }
-
-    public virtual Treatment Treatment { get; set; }
-
-    public virtual Worker Worker { get; set; }
 }

@@ -14,6 +14,4 @@ public partial class Vacation
     public DateTime End { get; set; }
 
     public int WorkerId { get; set; }
-
-    public virtual Worker Worker { get; set; }
 }

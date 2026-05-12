@@ -18,10 +18,4 @@ public partial class BookingHistory
     public int WorkerId { get; set; }
 
     public int BookingId { get; set; }
-
-    public virtual Booking Booking { get; set; }
-
-    public virtual Customer Customer { get; set; }
-
-    public virtual Worker Worker { get; set; }
 }

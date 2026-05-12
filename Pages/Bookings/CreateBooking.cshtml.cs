@@ -2,6 +2,7 @@ using Datamatiker2SemExam.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Datamatiker2SemExam.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 namespace Datamatiker2SemExam.Pages.Bookings
 {
     public class CreateBookingModel : PageModel
@@ -17,6 +18,7 @@ namespace Datamatiker2SemExam.Pages.Bookings
             if (!ModelState.IsValid)
             {
                 return Page();
+
 
             }
             repo.Create(Element);
