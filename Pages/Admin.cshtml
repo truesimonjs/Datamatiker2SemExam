@@ -21,7 +21,7 @@
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>Dag</th>
+            <td>Dag</td>
             <th>Åbner</th>
             <th>Lukker</th>
             <th>Åben?</th>
@@ -33,7 +33,11 @@
         @foreach (var item in Model.OpeningHours)
         {
             <tr>
-                <td>@item.Day</td>
+                <td>
+                    <a asp-page="/Admin/Details" asp-route-id="@item.Id">
+                        @item.Day
+                    </a>
+                </td>
                 <td>@item.StartTime</td>
                 <td>@item.EndTime</td>
                 <td>@(item.ErOpen ? "Ja" : "Nej")</td>
