@@ -39,29 +39,11 @@ namespace Datamatiker2SemExam.Pages
                 return Page();
             }
 
-
-            // Log ind
-            await HttpContext.SignInAsync(
-                CookieAuthenticationDefaults.AuthenticationScheme,
-                BuildClaimsPrincipal(user));
-
+            await _userRepository.LogIn(HttpContext, user);
 
             return RedirectToPage("/Index");
         }
 
-        private ClaimsPrincipal BuildClaimsPrincipal(User user)
-        {
-            // Opbyg Claims-liste
-            List<Claim> claims = new List<Claim>();
-            claims.Add(new Claim(ClaimTypes.Name, user.Username));
-            claims.Add(new Claim(ClaimTypes.Role, user.Role));
 
-            // Opret ClaimsIdentity (claims plus Authentication-strategi)
-            ClaimsIdentity claimsIdentity = new ClaimsIdentity(
-                claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-            // Opret endeligt ClaimsPrincipal-objekt
-            return new ClaimsPrincipal(claimsIdentity);
-        }
     }
 }

@@ -58,7 +58,7 @@ namespace Datamatiker2SemExam.Services
         private int NextId()
         {
             IEnumerable<int> usedIds = GetAll().Select(t => t.Id);
-            int newId = usedIds.DefaultIfEmpty(0).Max();
+            int newId = usedIds.DefaultIfEmpty(0).Max() + 1;
             return newId;
         }
 

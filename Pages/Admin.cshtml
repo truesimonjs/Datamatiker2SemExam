@@ -39,10 +39,10 @@
                 <td>@(item.ErOpen ? "Ja" : "Nej")</td>
 
                 <td>
-                    <form method="post" asp-page-handler="Delete" style="display:inline;">
+                    <form method="post" asp-page-handler="ToggleOpen" style="display:inline;">
                         <input type="hidden" name="Id" value="@item.Id" />
-                        <button type="submit" class="btn btn-danger btn-sm">
-                            Slet
+                        <button type="submit" class="btn btn-warning btn-sm">
+                            @(item.ErOpen ? "Luk" : "Åben")
                         </button>
                     </form>
                 </td>
