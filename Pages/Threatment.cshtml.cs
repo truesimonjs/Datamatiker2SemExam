@@ -15,7 +15,7 @@ namespace Datamatiker2SemExam.Pages
         {
             _treatmentRepository = treatmentRepository;
         }
-
+        //t
         public void OnGet(int id)
         {
             // The id is captured from the route
