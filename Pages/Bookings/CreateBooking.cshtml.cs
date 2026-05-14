@@ -9,6 +9,7 @@ namespace Datamatiker2SemExam.Pages.Bookings
     public class CreateBookingModel : PageModel
     {
         private IBookingRepository repo;
+        [BindProperty]
         public Booking Element { get; set; } = new();
 
         public SelectList CustomerList { get; set; }

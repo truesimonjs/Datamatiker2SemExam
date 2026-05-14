@@ -19,12 +19,12 @@ namespace Datamatiker2SemExam.Services
                 .Include(b => b.Treatment)
                 .Include(b => b.Worker);
         }
-        /*
+        
         public override int Create(Booking entity)
         {
-            Debug.Assert(treatmentRepo != null);
-            //entity.Duration = treatmentRepo.Read(entity.TreatmentId).Duration;
+            
+            entity.Duration = treatmentRepo.Read(entity.TreatmentId).Duration;
             return base.Create(entity);
-        }*/
+        }
     }
 }
