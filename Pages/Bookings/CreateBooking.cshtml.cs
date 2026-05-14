@@ -18,7 +18,8 @@ namespace Datamatiker2SemExam.Pages.Bookings
             this.repo = repo;
             CustomerList = new SelectList(customerRepo.GetAll(),nameof(Customer.Id),nameof(Customer.Name));
             WorkerList = new SelectList(workerRepo.GetAll(),nameof(Worker.Id),nameof(Worker.Name));
-            
+
+
         }
         public IActionResult OnPost()
         {
