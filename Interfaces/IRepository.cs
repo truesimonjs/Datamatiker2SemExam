@@ -16,4 +16,12 @@ namespace Datamatiker2SemExam
       
         bool Delete (int id);
     }
+    public interface ICustomerRepository : IRepository<Customer>
+    {
+
+    }
+    public interface IWorkerRepository : IRepository<Worker>
+    {
+
+    }
 }

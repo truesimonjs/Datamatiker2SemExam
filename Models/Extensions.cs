@@ -12,11 +12,18 @@
 
     public partial class Booking : IHasId
     {
+     
 
     }
 
     public partial class User : IHasId
     {
 
+    }
+    public partial class Customer : IHasId 
+    {
+    }
+    public partial class Worker : IHasId
+    {
     }
 }

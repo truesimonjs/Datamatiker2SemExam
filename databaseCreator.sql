@@ -19,6 +19,7 @@ CREATE TABLE [User] (
 GO
 CREATE TABLE [Treatment] (
   [Id] integer PRIMARY KEY,
+  [Name] nvarchar(255),
   [price] float NOT NULL,
   [Duration] float
 )
@@ -41,7 +42,7 @@ CREATE TABLE [Worker] (
 GO
 CREATE TABLE [Booking] (
   [id] integer PRIMARY KEY,
-  [StartTime] Char(255),
+  [StartTime] DATETIME,
   [Duration] float,
   [treatmentId] int NOT NULL,
   [customerId] int NOT NULL,
@@ -131,13 +132,13 @@ VALUES
 
 
 -- TREATMENTS
-INSERT INTO [Treatment] (Id, Price, Duration)
+INSERT INTO [Treatment] (Id,Name, Price, Duration)
 VALUES
-(1, 200, 30),
-(2, 300, 45),
-(3, 400, 60),
-(4, 550, 90),
-(5, 150, 20);
+(1,'treatment1', 200, 30),
+(2,'treatment2', 300, 45),
+(3,'treatment3', 400, 60),
+(4,'treatment4', 550, 90),
+(5,'treatment5', 150, 20);
 
 
 -- COMPETENCIES

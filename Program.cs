@@ -17,6 +17,8 @@ namespace Datamatiker2SemExam
             builder.Services.AddSingleton<ITreatmentRepository, TreatmentRepository>();
             builder.Services.AddSingleton<IOpeningHourRepository, OpeningHourRepository>();
             builder.Services.AddSingleton<IBookingRepository, BookingRepository>();
+            builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>();
+            builder.Services.AddSingleton<IWorkerRepository, WorkerRepository>();
             builder.Services.AddSingleton<IUserRepository, UserRepository>();
             builder.Services.AddDbContext<MassageDBContext>(options =>
          options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));

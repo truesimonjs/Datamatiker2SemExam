@@ -5,11 +5,11 @@ using System.Collections.Generic;
 
 namespace Datamatiker2SemExam.Models;
 
-public partial class Booking : IHasId
+public partial class Booking
 {
     public int Id { get; set; }
 
-    public string StartTime { get; set; }
+    public DateTime? StartTime { get; set; }
 
     public double? Duration { get; set; }
 
