@@ -12,6 +12,7 @@
 
     public partial class Booking : IHasId
     {
+     
 
     }
 

@@ -7,7 +7,7 @@ namespace Datamatiker2SemExam.Services
     where T : class, IHasId
     where TContext : DbContext, new()
     {
-        public int Create(T entity)
+        public virtual int Create(T entity)
         {
             using DbContext context = new TContext();
             int id = NextId();
@@ -18,7 +18,7 @@ namespace Datamatiker2SemExam.Services
             return entity.Id;
             
         }
-        public T? Read(int id)
+        public virtual T? Read(int id)
         {
             using DbContext context = new TContext();
 
@@ -34,13 +34,13 @@ namespace Datamatiker2SemExam.Services
             return query.ElementAt(0);
             */
         }
-        public List<T> GetAll()
+        public virtual List<T> GetAll()
         {
             using DbContext context = new TContext();
             return GetAllWithIncludes(context).ToList();
 
         }
-        public bool Delete(int id)
+        public virtual bool Delete(int id)
         {
             using DbContext context = new TContext();
             T? item = Read(id);

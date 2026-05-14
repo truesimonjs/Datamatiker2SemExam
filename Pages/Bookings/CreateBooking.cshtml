@@ -4,13 +4,14 @@
     <form method="post">
         <div class="form-group mb-3">
             <label asp-for="@Model.Element.StartTime" class="control-label"></label>
-            <input asp-for="@Model.Element.StartTime" type="date" class="form-control" />
+            <input asp-for="@Model.Element.StartTime" type="datetime-local" class="form-control" />
             <span asp-validation-for="@Model.Element.StartTime" class="text-danger"></span>
         </div>
+        
         <div class="form-group mb-3">
-            <label asp-for="@Model.Element.Duration" class="control-label"></label>
-            <input asp-for="@Model.Element.Duration" class="form-control" />
-            <span asp-validation-for="@Model.Element.Duration" class="text-danger"></span>
+            <label class="control-label">Treatment</label>
+            <select asp-for="@Model.Element.TreatmentId" asp-items="@Model.TreatmentList" class="form-control"></select>
+            <span asp-validation-for="@Model.Element.TreatmentId" class="text-danger"></span>
         </div>
         <div class="form-group mb-3">
             <label class="control-label">Kunde</label>
