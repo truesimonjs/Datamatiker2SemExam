@@ -2,6 +2,7 @@ using Datamatiker2SemExam.Interfaces;
 using Datamatiker2SemExam.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore.Migrations.Operations;
 
 namespace Datamatiker2SemExam.Pages
 {
@@ -28,6 +29,19 @@ namespace Datamatiker2SemExam.Pages
             }
             return Page();
         }
-   
+        public IActionResult OnPostDelete(int id)
+        {
+            var booking = _bookingRepository.Delete(id);
+
+            if (booking == null)
+
+            {
+                return NotFound();
+            }
+
+                _bookingRepository.Delete(id);
+
+            return RedirectToPage("/ViewBooking");
+        }
     }
 }
