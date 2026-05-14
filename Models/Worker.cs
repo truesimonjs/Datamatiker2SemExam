@@ -10,4 +10,12 @@ public partial class Worker
     public int Id { get; set; }
 
     public string Name { get; set; }
+
+    public virtual ICollection<BookingHistory> BookingHistories { get; set; } = new List<BookingHistory>();
+
+    public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
+
+    public virtual ICollection<Competency> Competencies { get; set; } = new List<Competency>();
+
+    public virtual ICollection<Vacation> Vacations { get; set; } = new List<Vacation>();
 }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Datamatiker2SemExam.Models;
 
-public partial class Booking : IHasId
+public partial class Booking
 {
     public int Id { get; set; }
 
@@ -18,4 +18,12 @@ public partial class Booking : IHasId
     public int CustomerId { get; set; }
 
     public int WorkerId { get; set; }
+
+    public virtual ICollection<BookingHistory> BookingHistories { get; set; } = new List<BookingHistory>();
+
+    public virtual Customer Customer { get; set; }
+
+    public virtual Treatment Treatment { get; set; }
+
+    public virtual Worker Worker { get; set; }
 }

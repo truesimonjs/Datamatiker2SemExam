@@ -12,4 +12,8 @@ public partial class Treatment
     public double Price { get; set; }
 
     public double? Duration { get; set; }
+
+    public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
+
+    public virtual ICollection<Competency> Competencies { get; set; } = new List<Competency>();
 }

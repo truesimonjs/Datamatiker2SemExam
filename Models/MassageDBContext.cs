@@ -25,6 +25,8 @@ public partial class MassageDBContext : DbContext
 
     public virtual DbSet<Customer> Customers { get; set; }
 
+    public virtual DbSet<OpeningHour> OpeningHours { get; set; }
+
     public virtual DbSet<Treatment> Treatments { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
@@ -41,7 +43,7 @@ public partial class MassageDBContext : DbContext
     {
         modelBuilder.Entity<Booking>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Booking__3213E83FE82D39FB");
+            entity.HasKey(e => e.Id).HasName("PK__Booking__3213E83FDE4CCFDE");
 
             entity.ToTable("Booking");
 
@@ -50,16 +52,31 @@ public partial class MassageDBContext : DbContext
                 .HasColumnName("id");
             entity.Property(e => e.CustomerId).HasColumnName("customerId");
             entity.Property(e => e.StartTime)
-                .IsRequired()
-                .IsRowVersion()
-                .IsConcurrencyToken();
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .IsFixedLength();
             entity.Property(e => e.TreatmentId).HasColumnName("treatmentId");
             entity.Property(e => e.WorkerId).HasColumnName("workerId");
+
+            entity.HasOne(d => d.Customer).WithMany(p => p.Bookings)
+                .HasForeignKey(d => d.CustomerId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Booking__custome__3CBF0154");
+
+            entity.HasOne(d => d.Treatment).WithMany(p => p.Bookings)
+                .HasForeignKey(d => d.TreatmentId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Booking__treatme__3BCADD1B");
+
+            entity.HasOne(d => d.Worker).WithMany(p => p.Bookings)
+                .HasForeignKey(d => d.WorkerId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Booking__workerI__3DB3258D");
         });
 
         modelBuilder.Entity<BookingHistory>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__BookingH__3213E83FEA607ABD");
+            entity.HasKey(e => e.Id).HasName("PK__BookingH__3213E83F8364C07F");
 
             entity.ToTable("BookingHistory");
 
@@ -73,11 +90,26 @@ public partial class MassageDBContext : DbContext
                 .IsRowVersion()
                 .IsConcurrencyToken();
             entity.Property(e => e.WorkerId).HasColumnName("workerId");
+
+            entity.HasOne(d => d.Booking).WithMany(p => p.BookingHistories)
+                .HasForeignKey(d => d.BookingId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__BookingHi__booki__4277DAAA");
+
+            entity.HasOne(d => d.Customer).WithMany(p => p.BookingHistories)
+                .HasForeignKey(d => d.CustomerId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__BookingHi__custo__408F9238");
+
+            entity.HasOne(d => d.Worker).WithMany(p => p.BookingHistories)
+                .HasForeignKey(d => d.WorkerId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__BookingHi__worke__4183B671");
         });
 
         modelBuilder.Entity<Competency>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Competen__3213E83F81EA95E2");
+            entity.HasKey(e => e.Id).HasName("PK__Competen__3213E83FC39F1FC5");
 
             entity.ToTable("Competency");
 
@@ -86,11 +118,19 @@ public partial class MassageDBContext : DbContext
                 .HasColumnName("id");
             entity.Property(e => e.TreatmentId).HasColumnName("treatmentId");
             entity.Property(e => e.WorkerId).HasColumnName("workerId");
+
+            entity.HasOne(d => d.Treatment).WithMany(p => p.Competencies)
+                .HasForeignKey(d => d.TreatmentId)
+                .HasConstraintName("FK__Competenc__treat__4830B400");
+
+            entity.HasOne(d => d.Worker).WithMany(p => p.Competencies)
+                .HasForeignKey(d => d.WorkerId)
+                .HasConstraintName("FK__Competenc__worke__4924D839");
         });
 
         modelBuilder.Entity<Customer>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Customer__3213E83FDF57CEA2");
+            entity.HasKey(e => e.Id).HasName("PK__Customer__3213E83FEED9D902");
 
             entity.ToTable("Customer");
 
@@ -102,9 +142,19 @@ public partial class MassageDBContext : DbContext
             entity.Property(e => e.Phonenumber).HasMaxLength(255);
         });
 
+        modelBuilder.Entity<OpeningHour>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__OpeningH__3214EC079E8F4511");
+
+            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Day).HasMaxLength(250);
+            entity.Property(e => e.EndTime).HasMaxLength(250);
+            entity.Property(e => e.StartTime).HasMaxLength(250);
+        });
+
         modelBuilder.Entity<Treatment>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Treatmen__3214EC07ED37B703");
+            entity.HasKey(e => e.Id).HasName("PK__Treatmen__3214EC076882DD6D");
 
             entity.ToTable("Treatment");
 
@@ -114,7 +164,7 @@ public partial class MassageDBContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__User__3213E83FBD494B85");
+            entity.HasKey(e => e.Id).HasName("PK__User__3213E83F2C4BBDF1");
 
             entity.ToTable("User");
 
@@ -134,7 +184,7 @@ public partial class MassageDBContext : DbContext
 
         modelBuilder.Entity<Vacation>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Vacation__3213E83F30C552A7");
+            entity.HasKey(e => e.Id).HasName("PK__Vacation__3213E83FC1CCCF6D");
 
             entity.ToTable("Vacation");
 
@@ -148,11 +198,16 @@ public partial class MassageDBContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("start");
             entity.Property(e => e.WorkerId).HasColumnName("workerId");
+
+            entity.HasOne(d => d.Worker).WithMany(p => p.Vacations)
+                .HasForeignKey(d => d.WorkerId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Vacation__worker__45544755");
         });
 
         modelBuilder.Entity<Worker>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Worker__3213E83F47429D24");
+            entity.HasKey(e => e.Id).HasName("PK__Worker__3213E83F992B6138");
 
             entity.ToTable("Worker");
 

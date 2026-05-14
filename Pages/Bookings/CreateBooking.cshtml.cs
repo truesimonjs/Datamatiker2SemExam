@@ -10,9 +10,15 @@ namespace Datamatiker2SemExam.Pages.Bookings
     {
         private IBookingRepository repo;
         public Booking Element { get; set; } = new();
-        public CreateBookingModel(IBookingRepository repo)
+
+        public SelectList CustomerList { get; set; }
+        public SelectList WorkerList { get; set; }
+        public CreateBookingModel(IBookingRepository repo, ICustomerRepository customerRepo, IWorkerRepository workerRepo)
         {
             this.repo = repo;
+            CustomerList = new SelectList(customerRepo.GetAll(),nameof(Customer.Id),nameof(Customer.Name));
+            WorkerList = new SelectList(workerRepo.GetAll(),nameof(Worker.Id),nameof(Worker.Name));
+            
         }
         public IActionResult OnPost()
         {
