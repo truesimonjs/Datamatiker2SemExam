@@ -4,3 +4,33 @@
 <h2>Booking info</h2>
 
 <p>Booking id: @Model.Id</p>
+
+@if (Model.Booking != null)
+{
+<div>
+    <div class="card shadow mt-4">
+        <div class="card-body">
+            <h3 class="card-title">Treatment ID: @Model.Booking.Treatment?.Id</h3>
+            <h5>Customer Name: @(Model.Booking.Customer?.Name)</h5>
+            <h5>Start Time: @(Model.Booking.StartTime)</h5>
+            <h5>Duration: @(Model.Booking.Duration) minutes</h5>
+
+                <div class="alert alert-warning">Er du sikker på du vil slette denne booking?</div>
+
+                <div class="d-flex gap-2 mt-3">
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@Model.Booking.Id">
+                        <button type="submit" class="btn btn-danger">Ja, slet</button>
+                    </form>
+
+                    <a asp-page="/ViewBooking" class="btn btn-secondary">Nej, tilbage til oversigt</a>
+
+                    </div>
+        </div>
+    </div>
+</div>
+
+}
+else
+{
+    <div class="alert alert-warning">Booking blev ikke fundet.</div>
+}
