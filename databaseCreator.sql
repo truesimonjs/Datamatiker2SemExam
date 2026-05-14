@@ -97,14 +97,7 @@ CREATE TABLE [OpeningHours] (
 GO
 
 
-INSERT INTO [Treatment] (id, Price, Duration)
-VALUES (1, 200, 30);
 
-INSERT INTO [Treatment] (id, Price, Duration)
-VALUES (2, 300, 45);
-
-INSERT INTO [Treatment] (id, Price, Duration)
-VALUES (3, 400, 60);
 
 -- =========================
 -- TEST DATA

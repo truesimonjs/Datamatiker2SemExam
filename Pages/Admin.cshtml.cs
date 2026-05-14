@@ -1,47 +1,29 @@
+using Datamatiker2SemExam.Interfaces;
 using Datamatiker2SemExam.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Datamatiker2SemExam.Pages
-{ 
-public class AdminModel : PageModel
 {
-    private readonly MassageDBContext _context;
-
-    public List<OpeningHour> OpeningHours { get; set; }
-
-    public AdminModel(MassageDBContext context)
+    public class AdminModel : PageModel
     {
-        _context = context;
-    }
 
-    public void OnGet()
-    {
-        OpeningHours = _context.OpeningHours
-            .OrderBy(o => o.Id)
-            .ToList();
-    }
+        public List<OpeningHour> OpeningHours { get; set; }
+        public IOpeningHourRepository _openingHoursRepository { get; set; }
 
-        public IActionResult OnPostToggleOpen(int Id)
+        public AdminModel(IOpeningHourRepository openingHourRepository)
         {
-            var item = _context.OpeningHours.FirstOrDefault(o => o.Id == Id);
-
-            if (item == null)
-            {
-                TempData["Error"] = "Kunne ikke finde åbningstiden.";
-                return RedirectToPage();
-            }
-
-            // Skift mellem åben og lukket
-            item.ErOpen = !item.ErOpen;
-
-            _context.SaveChanges();
-
-            TempData["Success"] = item.ErOpen
-                ? $"{item.Day} er nu åbnet."
-                : $"{item.Day} er nu lukket.";
-
-            return RedirectToPage();
+            _openingHoursRepository = openingHourRepository;
         }
-    }
+
+        public void OnGet()
+        {
+            OpeningHours = _openingHoursRepository.GetAll();
+        }
+
+        public async Task<IActionResult> OnPost()
+        {
+            return Page();
+        }
+        }
 }

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Datamatiker2SemExam.Models;
 using Datamatiker2SemExam.Services;
 using Datamatiker2SemExam.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Datamatiker2SemExam.Pages
 {
@@ -19,6 +20,12 @@ namespace Datamatiker2SemExam.Pages
         {
             // The id is captured from the route
             Treatment = _treatmentRepository.Read(id);
+        }
+
+        public IActionResult OnPost(int id)
+        {
+            _treatmentRepository.Delete(id);
+            return RedirectToPage("/ViewTreaments");
         }
     }
 }
