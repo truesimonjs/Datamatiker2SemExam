@@ -26,5 +26,6 @@ namespace Datamatiker2SemExam.Services
             entity.Duration = treatmentRepo.Read(entity.TreatmentId).Duration;
             return base.Create(entity);
         }
+       
     }
 }

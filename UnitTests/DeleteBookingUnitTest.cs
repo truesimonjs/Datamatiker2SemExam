@@ -44,9 +44,9 @@ namespace Datamatiker2SemExam.UnitTests
             Booking booking = new Booking();
             booking.StartTime = DateTime.Now;
             booking.Duration = 30;
-            booking.WorkerId = 0;
-            booking.TreatmentId = 0;
-            booking.CustomerId = 0;
+            booking.WorkerId = 1;
+            booking.TreatmentId = 1;
+            booking.CustomerId = 1;
             return booking;
         }
     }
