@@ -20,24 +20,7 @@ namespace Datamatiker2SemExam.Pages
         public void OnGet()
         {
             Bookings = _bookingRepository.GetAll();
-            Console.WriteLine(Bookings.ToString());
         }
-
-        public IActionResult OnPostDelete(int id)
-        {
-            var booking = _bookingRepository.Read(id);
-
-            if (booking == null)
-
-            {
-                return NotFound();
-            }
-
-            _bookingRepository.Delete(id);
-
-            return RedirectToPage();
-        }
-
     }
 }
 
