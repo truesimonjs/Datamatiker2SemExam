@@ -18,7 +18,6 @@ namespace Datamatiker2SemExam.Pages
 
         public IActionResult OnGet(int id)
         {
-            Id = id;
             Booking = _bookingRepository.Read(id);
             if (Booking == null)
             {
