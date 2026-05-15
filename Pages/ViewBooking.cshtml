@@ -1,44 +1,84 @@
 ﻿@page
 @model Datamatiker2SemExam.Pages.ViewBookingModel
 @{
-    ViewData["Title"] = "Bookinger";
+    ViewData["Title"] = "Mine Bookinger";
 }
 
-<h2>Bookings</h2>
-<p>Herunder kan du se dine bookinger</p>
-
 <div class="container">
-    <div class="row">
+    <div class="bookings-header">
+        <p class="bookings-subtitle">BOOKINGER</p>
+        <h1 class="bookings-title">Planlagte Sessioner</h1>
+        <p class="bookings-description">
+            Se og administrer alle kommende massage-bookinger her.
+        </p>
+    </div>
 
-        @foreach (var elem in Model.Bookings)
-        {
-            <div class="col-md-4 p-3">
-                <div class="card shadow" style="width: 18rem;">
-                    <div class="card-body d-flex flex-column">
+    @if (Model.Bookings == null || Model.Bookings.Count == 0)
+    {
+        <div class="alert alert-info" role="alert">
+            <i class="bi bi-info-circle"></i>
+            Du har ingen bookinger endnu. <a href="/Bookings/CreateBooking">Book en session nu</a>
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var elem in Model.Bookings)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="booking-card">
+                        <div class="booking-card-header">
+                            <h3 class="booking-card-treatment">@elem.Treatment.Name</h3>
+                            <span class="booking-card-status">Booket</span>
+                        </div>
 
-                        <h4>Start Time: @elem.StartTime</h4>
+                        <div class="booking-card-content">
+                            <div class="booking-card-item">
+                                <i class="bi bi-calendar-event"></i>
+                                <div>
+                                    <div class="booking-card-label">Start Tid</div>
+                                    <div class="booking-card-value">@elem.StartTime</div>
+                                </div>
+                            </div>
 
-                        <p>Varighed: @elem.Duration</p>
+                            <div class="booking-card-item">
+                                <i class="bi bi-clock"></i>
+                                <div>
+                                    <div class="booking-card-label">Varighed</div>
+                                    <div class="booking-card-value">@elem.Duration min</div>
+                                </div>
+                            </div>
 
-                        <p>Kunde: @elem.Customer.Name</p>
+                            <div class="booking-card-item">
+                                <i class="bi bi-person"></i>
+                                <div>
+                                    <div class="booking-card-label">Kunde</div>
+                                    <div class="booking-card-value">@elem.Customer.Name</div>
+                                </div>
+                            </div>
 
-                        <p>Pris: @elem.Treatment.Price</p>
+                            <div class="booking-card-item">
+                                <i class="bi bi-person-badge"></i>
+                                <div>
+                                    <div class="booking-card-label">Terapeut</div>
+                                    <div class="booking-card-value">@elem.Worker.Name</div>
+                                </div>
+                            </div>
+                        </div>
 
-                        <p>Medarbejder: @elem.Worker.Name</p>
-                        <a href="/Booking/@elem.Id" style="text-decoration: none; color: inherit;">
-
-                            <button class="btn btn-danger btn-sm mt-3" type="submit" title="Slet">
-                                <i class="bi bi-trash"></i>
-                            </button>
-
-                        </a>
-
+                        <div class="booking-card-footer">
+                            <div class="booking-price">DKK @elem.Treatment.Price</div>
+                            <div class="booking-card-actions">
+                                <a href="/Booking/@elem.Id" class="btn-booking-delete" title="Slet booking">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
-
-    </div>
+            }
+        </div>
+    }
 </div>
 
 

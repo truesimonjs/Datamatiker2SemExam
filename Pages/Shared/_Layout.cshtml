@@ -25,24 +25,19 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link" asp-page="/Index">Home</a>
+                            <a class="nav-link" asp-page="/ViewTreaments">Behandlinger</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-page="/ViewTreaments">Services</a>
+                            <a class="nav-link" asp-page="/Kontakt">Kontact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-page="/Kontakt">Contact</a>
+                            <a class="nav-link" asp-page="/Privacy">Omkring</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-page="/Privacy">About</a>
+                            <a class="nav-link" asp-page="/ViewBooking">Bookninger</a>
                         </li>
                         @if (User.Identity != null && User.Identity.IsAuthenticated)    
                         {
-                            <li class="nav-item">
-                                <span class="user-info">
-                                    @User.Identity.Name
-                                </span>
-                            </li>
                             @if (User.IsInRole("Admin"))
                             {
                                 <li class="nav-item">
@@ -54,6 +49,9 @@
                     <div class="navbar-auth-buttons">
                         @if (User.Identity != null && User.Identity.IsAuthenticated)    
                         {
+                                <span class="user-info">
+                                    logget ind som @User.Identity.Name
+                                </span>
                             <a class="logout-link" asp-area="" asp-page="/Logout">Logout</a>
                         }
                         else
