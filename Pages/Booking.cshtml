@@ -1,34 +1,82 @@
 ﻿@page "{id}"
 @model Datamatiker2SemExam.Pages.BookingModel
+@{
+    ViewData["Title"] = "Booking Detaljer";
+}
 
-<h2>Booking info</h2>
+<div class="container mt-5">
+    @if (Model.Booking != null)
+    {
+        <a href="/ViewBooking" class="btn-back">
+            <i class="bi bi-chevron-left"></i>
+            Tilbage til Bookinger
+        </a>
 
-@if (Model.Booking != null)
-{
-<div>
-    <div class="card shadow mt-4">
-        <div class="card-body">
-            <h3 class="card-title">Treatment ID: @Model.Booking.Treatment?.Id</h3>
-            <h5>Customer Name: @(Model.Booking.Customer?.Name)</h5>
-            <h5>Start Time: @(Model.Booking.StartTime)</h5>
-            <h5>Duration: @(Model.Booking.Duration) minutes</h5>
-
-                <div class="alert alert-warning">Er du sikker på du vil slette denne booking?</div>
-
-                <div class="d-flex gap-2 mt-3">
-                    <form method="post" asp-page-handler="Delete" asp-route-id="@Model.Booking.Id">
-                        <button type="submit" class="btn btn-danger">Ja, slet</button>
-                    </form>
-
-                    <a asp-page="/ViewBooking" class="btn btn-secondary">Nej, tilbage til oversigt</a>
-
+        <div class="booking-detail-header">
+            <div class="booking-detail-icon">
+                <i class="bi bi-calendar-check"></i>
+            </div>
+            <div class="booking-detail-info">
+                <h1 class="booking-detail-name">@Model.Booking.Treatment?.Name</h1>
+                <div class="booking-detail-specs">
+                    <div class="booking-spec">
+                        <div class="booking-spec-icon">
+                            <i class="bi bi-calendar-event"></i>
+                        </div>
+                        <div>
+                            <div class="booking-spec-label">Start Tid</div>
+                            <div class="booking-spec-value">@Model.Booking.StartTime</div>
+                        </div>
                     </div>
+                    <div class="booking-spec">
+                        <div class="booking-spec-icon">
+                            <i class="bi bi-clock"></i>
+                        </div>
+                        <div>
+                            <div class="booking-spec-label">Varighed</div>
+                            <div class="booking-spec-value">@Model.Booking.Duration min</div>
+                        </div>
+                    </div>
+                    <div class="booking-spec">
+                        <div class="booking-spec-icon">
+                            <i class="bi bi-person"></i>
+                        </div>
+                        <div>
+                            <div class="booking-spec-label">Kunde</div>
+                            <div class="booking-spec-value">@Model.Booking.Customer?.Name</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-}
-else
-{
-    <div class="alert alert-warning">Booking blev ikke fundet.</div>
-}
+        <div class="booking-warning">
+            <i class="bi bi-exclamation-triangle"></i>
+            <div>
+                <strong>Bekræft Sletning</strong>
+                <p class="mb-0">Er du sikker på at du vil slette denne booking? Denne handling kan ikke fortrydes.</p>
+            </div>
+        </div>
+
+        <div class="booking-actions">
+            <form method="post" asp-page-handler="Delete" asp-route-id="@Model.Booking.Id" class="d-inline">
+                <button type="submit" class="btn-confirm-delete" onclick="return confirm('Er du helt sikker?')">
+                    <i class="bi bi-trash"></i>
+                    Ja, slet booking
+                </button>
+            </form>
+            <a asp-page="/ViewBooking" class="btn-cancel-delete">
+                <i class="bi bi-x-circle"></i>
+                Nej, behold booking
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning" role="alert">
+            <h4 class="alert-heading">Booking ikke fundet</h4>
+            <p>Denne booking kunne ikke blive fundet.</p>
+            <a href="/ViewBooking" class="btn btn-primary">Tilbage til Bookinger</a>
+        </div>
+    }
+</div>
