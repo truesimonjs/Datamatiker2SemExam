@@ -9,9 +9,6 @@ namespace Datamatiker2SemExam.Pages
     public class BookingModel : PageModel
     {
         private readonly IBookingRepository _bookingRepository;
-
-        public int Id { get; set; }
-        public string Name { get; set; }
         public Booking? Booking { get; set; }
 
         public BookingModel(IBookingRepository bookingRepository)
@@ -31,16 +28,7 @@ namespace Datamatiker2SemExam.Pages
         }
         public IActionResult OnPostDelete(int id)
         {
-            var booking = _bookingRepository.Delete(id);
-
-            if (booking == null)
-
-            {
-                return NotFound();
-            }
-
-                _bookingRepository.Delete(id);
-
+            _bookingRepository.Delete(id);
             return RedirectToPage("/ViewBooking");
         }
     }
