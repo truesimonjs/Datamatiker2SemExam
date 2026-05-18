@@ -25,7 +25,7 @@ namespace Datamatiker2SemExam.Pages
         public IActionResult OnPost(int id)
         {
             _treatmentRepository.Delete(id);
-            return RedirectToPage("/ViewTreaments");
+            return RedirectToPage("/Treatments/ViewTreaments");
         }
     }
 }
