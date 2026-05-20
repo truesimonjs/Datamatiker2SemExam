@@ -18,7 +18,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
             <div class="container-fluid px-4">
-                <a class="navbar-brand ra-brand" href="/">
+                <a class="navbar-brand ra-brand ra-animate-text" href="/">
                     <span class="ra-brand-name">Relaxius</span>
                     <span class="ra-brand-tagline">Massage &amp; Wellness</span>
                 </a>
@@ -29,26 +29,26 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link ra-link" asp-page="/Treatments/ViewTreaments">Behandlinger</a>
+                            <a class="nav-link ra-link ra-animate-text" style="animation-delay: 0.1s;" asp-page="/Treatments/ViewTreaments">Behandlinger</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link ra-link" asp-page="/Kontakt">Kontact</a>
+                            <a class="nav-link ra-link ra-animate-text" style="animation-delay: 0.2s;" asp-page="/Kontakt">Kontact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link ra-link" asp-page="/Privacy">Omkring</a>
+                            <a class="nav-link ra-link ra-animate-text" style="animation-delay: 0.3s;" asp-page="/Privacy">Omkring</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link ra-link" asp-page="/Bookings/ViewBooking">Bookninger</a>
+                            <a class="nav-link ra-link ra-animate-text" style="animation-delay: 0.4s;" asp-page="/Bookings/ViewBooking">Bookninger</a>
                         </li>
                         @if (User.Identity != null && User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link ra-link" asp-page="/Bookings/CreateBooking">Lav Bookning</a>
+                                <a class="nav-link ra-link ra-animate-text" style="animation-delay: 0.5s;" asp-page="/Bookings/CreateBooking">Lav Bookning</a>
                             </li>
                             @if (User.IsInRole("Admin"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link ra-link" asp-area="" asp-page="/OpeningHours/Admin">Admin</a>
+                                    <a class="nav-link ra-link ra-animate-text" style="animation-delay: 0.6s;" asp-area="" asp-page="/OpeningHours/Admin">Admin</a>
                                 </li>
                             }
                         }
@@ -56,15 +56,15 @@
                     <div class="navbar-auth-buttons">
                         @if (User.Identity != null && User.Identity.IsAuthenticated)
                         {
-                            <span class="ra-user-info">
+                            <span class="ra-user-info ra-animate-text" style="animation-delay: 0.3s;">
                                 logget ind som @User.Identity.Name
                             </span>
-                            <a class="ra-logout-button" asp-area="" asp-page="/UserLogin/Logout">Logout</a>
+                            <a class="ra-logout-button ra-animate-text" style="animation-delay: 0.4s;" asp-area="" asp-page="/UserLogin/Logout">Logout</a>
                         }
                         else
                         {
-                            <a class="ra-btn-outline" asp-page="/UserLogin/Login">Sign In</a>
-                            <a class="ra-btn-filled" asp-page="/UserLogin/Register">Sign Up</a>
+                            <a class="ra-btn-outline ra-animate-text" style="animation-delay: 0.3s;" asp-page="/UserLogin/Login">Sign In</a>
+                            <a class="ra-btn-filled ra-animate-text" style="animation-delay: 0.4s;" asp-page="/UserLogin/Register">Sign Up</a>
                         }
                     </div>
                 </div>

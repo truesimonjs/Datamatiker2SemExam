@@ -1,5 +1,5 @@
 ﻿@page "{id}"
-@model Datamatiker2SemExam.Pages.BookingModel
+@model Datamatiker2SemExam.Pages.DeleteBookingModel
 @{
     ViewData["Title"] = "Booking Detaljer";
 }
@@ -65,7 +65,7 @@
                     Ja, slet booking
                 </button>
             </form>
-            <a asp-page="/ViewBooking" class="btn-cancel-delete">
+            <a asp-page="/Bookings/ViewBooking" class="btn-cancel-delete">
                 <i class="bi bi-x-circle"></i>
                 Nej, behold booking
             </a>
