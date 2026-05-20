@@ -25,9 +25,9 @@ namespace Datamatiker2SemExam.Pages
 
         public async Task<IActionResult> OnPost()
         {
-            List<User> allUsers = _userRepository.GetAll();
-            bool existingUser = allUsers.Any(u => u.Username == Username);
-            if (existingUser)
+            
+            User? existingUser = _userRepository.GetUserByUsernameAndPassword(Username, Password);
+            if (existingUser != null)
             {
                 ErrorMessage = "Username already exists. Please choose a different username.";
                 return Page();
