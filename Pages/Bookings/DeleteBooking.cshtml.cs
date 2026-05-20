@@ -6,12 +6,12 @@ using Microsoft.EntityFrameworkCore.Migrations.Operations;
 
 namespace Datamatiker2SemExam.Pages
 {
-    public class BookingModel : PageModel
+    public class DeleteBookingModel : PageModel
     {
         private readonly IBookingRepository _bookingRepository;
         public Booking? Booking { get; set; }
 
-        public BookingModel(IBookingRepository bookingRepository)
+        public DeleteBookingModel(IBookingRepository bookingRepository)
         {
             _bookingRepository = bookingRepository;
         }
@@ -28,7 +28,7 @@ namespace Datamatiker2SemExam.Pages
         public IActionResult OnPostDelete(int id)
         {
             _bookingRepository.Delete(id);
-            return RedirectToPage("/ViewBooking");
+            return RedirectToPage("/Bookings/ViewBooking");
         }
     }
 }
