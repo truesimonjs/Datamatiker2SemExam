@@ -12,9 +12,7 @@ namespace Datamatiker2SemExam.Services
         {
             List<User> users = new List<User>();
 
-            using MassageDBContext context = new MassageDBContext();
-
-            users = context.Users.ToList();
+            users = GetAll();
 
             User? user = users.FirstOrDefault(u => u.Username == username && u.Password == password);
 

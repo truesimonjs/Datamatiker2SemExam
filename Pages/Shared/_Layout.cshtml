@@ -38,6 +38,9 @@
                         </li>
                         @if (User.Identity != null && User.Identity.IsAuthenticated)    
                         {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-page="/Bookings/CreateBooking">Lav Bookning</a>
+                            </li>
                             @if (User.IsInRole("Admin"))
                             {
                                 <li class="nav-item">
