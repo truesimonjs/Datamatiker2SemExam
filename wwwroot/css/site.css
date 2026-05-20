@@ -4,6 +4,8 @@ html {
     --primary-color: #4a8f5e;
     --secondary-color: #f5f1e8;
     --accent-color: #8ab896;
+    --danger-color: #c0392b;
+    --text-on-primary: #ffffff;
     --text-dark: #333333;
     --text-light: #666666;
     --border-radius: 8px;
@@ -13,10 +15,6 @@ html {
   html {
     font-size: 16px;
   }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
@@ -85,6 +83,54 @@ body {
   text-align: center;
 }
 
+/* Buttons */
+.ra-btn-outline {
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    background: transparent;
+    border: 1px solid var(--text-light);
+    border-radius: var(--border-radius);
+    padding: 0.5rem 1.25rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: color 0.5s ease, border-color 0.5s ease, background 0.5s ease;
+}
+
+    .ra-btn-outline:hover {
+        background: var(--primary-color);
+        border-color: var(--primary-color);
+        color: var(--text-on-primary);
+    }
+.ra-btn-filled {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-on-primary);
+    background: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: 0.5rem 1.25rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: color 0.5s ease, border-color 0.5s ease, background 0.5s ease;
+}
+
+    .ra-btn-filled:hover {
+        background: transparent;
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+    }
 /* Opening Hours Card */
 .opening-hours-card {
   background: white;
@@ -138,33 +184,96 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.navbar-brand {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--primary-color) !important;
-  letter-spacing: -0.5px;
+.ra-user-info {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 200;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    padding: 0.5rem 1rem;
+    opacity: 0.75;
 }
 
-.navbar-brand:hover {
-  color: var(--accent-color) !important;
+.ra-logout-button {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-light) !important;
+    text-decoration: none;
+    padding: 0.4rem 0.9rem !important;
+    transition: border-color 0.3s ease, color 0.3s ease;
 }
 
-.nav-link {
-  color: var(--text-light) !important;
-  font-weight: 500;
-  padding: 0.5rem 1rem !important;
-  transition: color 0.3s ease;
-  margin: 0 0.25rem;
+    .ra-logout-button:hover {
+        color: var(--danger-color) !important;
+        text-decoration: underline;
+    }
+
+/* brand */
+
+.ra-brand {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    text-decoration: none;
 }
 
-.nav-link:hover {
-  color: var(--primary-color) !important;
+.ra-brand-name {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: var(--primary-color) !important;
+    line-height: 1;
 }
 
-.nav-link.active {
-  color: var(--primary-color) !important;
-  border-bottom: 2px solid var(--primary-color);
+.ra-brand-tagline {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-top: 4px;
 }
+
+.ra-brand:hover .ra-brand-name {
+    color: var(--accent-color) !important;
+}
+
+.ra-brand:hover .ra-brand-tagline {
+    color: var(--primary-color);
+}
+
+/* links */
+
+.ra-link {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    color: var(--text-light) !important;
+    padding: 0.5rem 1rem !important;
+    margin: 0 0.25rem;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.5s ease, color 0.3s ease;
+}
+
+    .ra-link:hover {
+        color: var(--text-dark) !important;
+        border-bottom: 2px solid var(--primary-color);
+    }
+
+    .ra-link.active {
+        color: var(--text-dark) !important;
+        border-bottom: 2px solid var(--primary-color);
+    }
 
 /* Auth Buttons */
 .navbar-auth-buttons {
