@@ -35,7 +35,7 @@ namespace Datamatiker2SemExam.Pages.Bookings
             }
             
             repo.Create(Element);
-            return RedirectToPage("/ViewBooking");
+            return RedirectToPage("/Bookings/ViewBooking");
                
         }
     }

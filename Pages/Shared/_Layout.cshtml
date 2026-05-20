@@ -25,7 +25,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link" asp-page="/ViewTreaments">Behandlinger</a>
+                            <a class="nav-link" asp-page="/Treatments/ViewTreaments">Behandlinger</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-page="/Kontakt">Kontact</a>
@@ -34,7 +34,7 @@
                             <a class="nav-link" asp-page="/Privacy">Omkring</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-page="/ViewBooking">Bookninger</a>
+                            <a class="nav-link" asp-page="/Bookings/ViewBooking">Bookninger</a>
                         </li>
                         @if (User.Identity != null && User.Identity.IsAuthenticated)    
                         {
@@ -44,7 +44,7 @@
                             @if (User.IsInRole("Admin"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link" asp-area="" asp-page="/Admin">Admin</a>
+                                    <a class="nav-link" asp-area="" asp-page="/OpeningHours/Admin">Admin</a>
                                 </li>
                             }
                         }
@@ -55,12 +55,12 @@
                                 <span class="user-info">
                                     logget ind som @User.Identity.Name
                                 </span>
-                            <a class="logout-link" asp-area="" asp-page="/Logout">Logout</a>
+                            <a class="logout-link" asp-area="" asp-page="/UserLogin/Logout">Logout</a>
                         }
                         else
                         {
-                            <a class="btn-navbar-login" asp-page="/Login">Sign In</a>
-                            <a class="btn-navbar-signup" asp-page="/Register">Sign Up</a>
+                            <a class="btn-navbar-login" asp-page="/UserLogin/Login">Sign In</a>
+                            <a class="btn-navbar-signup" asp-page="/UserLogin/Register">Sign Up</a>
                         }
                     </div>
                 </div>
